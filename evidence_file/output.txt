@@ -14,7 +14,7 @@ Running on Jenkins in /var/jenkins_home/workspace/submission-cicd-pipeline-jodyh
 [Pipeline] withDockerContainer
 Jenkins seems to be running inside container 183da073750d872c66627615adbc94e515632785649e8fe782e34edec906166a
 $ docker run -t -d -u 0:0 -p 3000:3000 -w /var/jenkins_home/workspace/submission-cicd-pipeline-jodyheryanto --volumes-from 183da073750d872c66627615adbc94e515632785649e8fe782e34edec906166a -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** node:lts-buster-slim cat
-$ docker top 43003beb0d1b5de3fb758bc702d711055926a8097bf90bc9dc3a67d0078fa6d8 -eo pid,comm
+$ docker top d19ee80283227199868086ffc2bd77a3358f38852089fad97accce63a0971ac3 -eo pid,comm
 [Pipeline] {
 [Pipeline] withCredentials
 Masking supported pattern matches of $GITHUB_TOKEN
@@ -31,7 +31,7 @@ Get:3 http://deb.debian.org/debian buster-updates InRelease [56.6 kB]
 Get:4 http://deb.debian.org/debian buster/main arm64 Packages [7737 kB]
 Get:5 http://deb.debian.org/debian-security buster/updates/main arm64 Packages [600 kB]
 Get:6 http://deb.debian.org/debian buster-updates/main arm64 Packages [8780 B]
-Fetched 8559 kB in 9s (943 kB/s)
+Fetched 8559 kB in 4s (2095 kB/s)
 Reading package lists...
 + apt-get install -y git
 Reading package lists...
@@ -112,7 +112,7 @@ Get:42 http://deb.debian.org/debian buster/main arm64 patch arm64 2.7.6-3+deb10u
 Get:43 http://deb.debian.org/debian buster/main arm64 publicsuffix all 20220811.1734-0+deb10u1 [127 kB]
 Get:44 http://deb.debian.org/debian buster/main arm64 xauth arm64 1:1.0.10-1 [38.2 kB]
 debconf: delaying package configuration, since apt-utils is not installed
-Fetched 21.5 MB in 13s (1708 kB/s)
+Fetched 21.5 MB in 4s (4778 kB/s)
 Selecting previously unselected package perl-modules-5.28.
 (Reading database ... 
 (Reading database ... 5%
@@ -335,7 +335,7 @@ done.
 [Pipeline] git
 The recommended git tool is: NONE
 Warning: CredentialId "jenkins-github-token" could not be found.
-Warning: JENKINS-30600: special launcher org.jenkinsci.plugins.docker.workflow.WithContainerStep$Decorator$1@5468cbad; decorates hudson.Launcher$LocalLauncher@11c15b68 will be ignored (a typical symptom is the Git executable not being run inside a designated container)
+Warning: JENKINS-30600: special launcher org.jenkinsci.plugins.docker.workflow.WithContainerStep$Decorator$1@cdb4cce; decorates hudson.Launcher$LocalLauncher@54bee097 will be ignored (a typical symptom is the Git executable not being run inside a designated container)
  > git rev-parse --resolve-git-dir /var/jenkins_home/workspace/submission-cicd-pipeline-jodyheryanto/.git # timeout=10
 Fetching changes from the remote Git repository
  > git config remote.origin.url https://github.com/jodyheryanto/a428-cicd-labs.git # timeout=10
@@ -344,14 +344,14 @@ Fetching upstream changes from https://github.com/jodyheryanto/a428-cicd-labs.gi
  > git --version # 'git version 2.39.5'
  > git fetch --tags --force --progress -- https://github.com/jodyheryanto/a428-cicd-labs.git +refs/heads/*:refs/remotes/origin/* # timeout=10
  > git rev-parse refs/remotes/origin/react-app^{commit} # timeout=10
-Checking out Revision 04ba783eaaff8eb0590f7a7bcb638a06e9a6df2b (refs/remotes/origin/react-app)
+Checking out Revision 45bbd0daf01a4c9b2a952659d27e000b187a4616 (refs/remotes/origin/react-app)
  > git config core.sparsecheckout # timeout=10
- > git checkout -f 04ba783eaaff8eb0590f7a7bcb638a06e9a6df2b # timeout=10
+ > git checkout -f 45bbd0daf01a4c9b2a952659d27e000b187a4616 # timeout=10
  > git branch -a -v --no-abbrev # timeout=10
  > git branch -D react-app # timeout=10
- > git checkout -b react-app 04ba783eaaff8eb0590f7a7bcb638a06e9a6df2b # timeout=10
-Commit message: "update git pages"
- > git rev-list --no-walk 04ba783eaaff8eb0590f7a7bcb638a06e9a6df2b # timeout=10
+ > git checkout -b react-app 45bbd0daf01a4c9b2a952659d27e000b187a4616 # timeout=10
+Commit message: "change branch name in git pages"
+ > git rev-list --no-walk 45bbd0daf01a4c9b2a952659d27e000b187a4616 # timeout=10
 [Pipeline] }
 [Pipeline] // stage
 [Pipeline] stage
@@ -359,7 +359,7 @@ Commit message: "update git pages"
 [Pipeline] sh
 + npm install
 
-up to date, audited 1820 packages in 6s
+up to date, audited 1820 packages in 7s
 
 214 packages are looking for funding
   run `npm fund` for details
@@ -403,7 +403,7 @@ PASS src/App.test.js
 Test Suites: 1 passed, 1 total
 Tests:       1 passed, 1 total
 Snapshots:   0 total
-Time:        1.49 s
+Time:        1.541 s
 Ran all test suites.
 [Pipeline] }
 [Pipeline] // stage
@@ -427,19 +427,31 @@ Compiled successfully.
 
 File sizes after gzip:
 
-  41.37 KB  build/static/js/2.4df63e2f.chunk.js
-  968 B     build/static/js/main.2e7a8246.chunk.js
-  776 B     build/static/js/runtime-main.65f670ca.js
-  278 B     build/static/css/main.31c7f1b8.chunk.css
+  41.37 KB        build/static/js/2.4df63e2f.chunk.js
+  1004 B (+36 B)  build/static/js/main.e6a8ded6.chunk.js
+  810 B (+34 B)   build/static/js/runtime-main.4bc1479a.js
+  278 B           build/static/css/main.31c7f1b8.chunk.css
 
-The project was built assuming it is hosted at /.
+The project was built assuming it is hosted at /a428-cicd-labs/.
 You can control this with the homepage field in your package.json.
 
 The build folder is ready to be deployed.
-You may serve it with a static server:
+To publish it at https://jodyheryanto.github.io/a428-cicd-labs/ , run:
 
-  npm install -g serve
-  serve -s build
+  npm install --save-dev gh-pages
+
+Add the following script in your package.json.
+
+    // ...
+    "scripts": {
+      // ...
+      "predeploy": "npm run build",
+      "deploy": "gh-pages -d build"
+    }
+
+Then run:
+
+  npm run deploy
 
 Find out more about deployment here:
 
@@ -460,7 +472,7 @@ the file ".pidfile".
 > my-app@0.1.0 start
 > react-scripts start
 
-+ echo 3444
++ echo 3436
 + set +x
 Now...
 Visit http://localhost:3000 to see your Node.js/React application in action.
@@ -473,16 +485,16 @@ Approved by Dicoding Indonesia
 [Pipeline] sh
 + chmod +x ./jenkins/scripts/github-pages.sh
 + ./jenkins/scripts/github-pages.sh
-+ echo GITHUB_TOKEN: ****
-GITHUB_TOKEN: ****
-+ echo GITHUB_REPOSITORY: jodyheryanto/a428-cicd-labs
-GITHUB_REPOSITORY: jodyheryanto/a428-cicd-labs
 + [ -z **** ]
 + [ -z jodyheryanto/a428-cicd-labs ]
 + git config --global user.email 41898282+github-actions[bot]@users.noreply.github.com
 + git config --global user.name github-actions[bot]
++ git checkout react-app
+Already on 'react-app'
+M	jenkins/scripts/github-pages.sh
+M	package.json
 + git remote set-url origin https://git:****@github.com/jodyheryanto/a428-cicd-labs.git
-+ npx gh-pages --message [skip ci] Updates --dist build
++ npx gh-pages --message [skip ci] Updates --dist build --branch gh-pages
 npm warn exec The following package was not found and will be installed: gh-pages@6.3.0
 Published
 [Pipeline] sh
@@ -491,7 +503,7 @@ The following command terminates the "npm start" process using its PID
 (written to ".pidfile"), all of which were conducted when "deliver.sh"
 was executed.
 + cat .pidfile
-+ kill 3444
++ kill 3436
 [Pipeline] }
 [Pipeline] // stage
 [Pipeline] }
@@ -499,8 +511,8 @@ was executed.
 [Pipeline] }
 [Pipeline] // withCredentials
 [Pipeline] }
-$ docker stop --time=1 43003beb0d1b5de3fb758bc702d711055926a8097bf90bc9dc3a67d0078fa6d8
-$ docker rm -f --volumes 43003beb0d1b5de3fb758bc702d711055926a8097bf90bc9dc3a67d0078fa6d8
+$ docker stop --time=1 d19ee80283227199868086ffc2bd77a3358f38852089fad97accce63a0971ac3
+$ docker rm -f --volumes d19ee80283227199868086ffc2bd77a3358f38852089fad97accce63a0971ac3
 [Pipeline] // withDockerContainer
 [Pipeline] }
 [Pipeline] // node
