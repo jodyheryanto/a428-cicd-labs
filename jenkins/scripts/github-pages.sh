@@ -1,10 +1,6 @@
 #!/usr/bin/env sh
 set -x
 
-# Debugging: Cek apakah variabel tersedia
-echo "GITHUB_TOKEN: ${GITHUB_TOKEN}"
-echo "GITHUB_REPOSITORY: ${GITHUB_REPOSITORY}"
-
 if [ -z "$GITHUB_TOKEN" ] || [ -z "$GITHUB_REPOSITORY" ]; then
   echo "Error: GITHUB_TOKEN or GITHUB_REPOSITORY is not set."
   exit 1

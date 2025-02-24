@@ -8,6 +8,8 @@ pipeline {
     environment {
         CI = 'true'
         NODE_OPTIONS = '--openssl-legacy-provider'
+        GITHUB_TOKEN = credentials('jenkins-github-token')
+        GITHUB_REPOSITORY = 'jodyheryanto/a428-cicd-labs'
     }
     triggers {
         pollSCM('H/2 * * * *')
