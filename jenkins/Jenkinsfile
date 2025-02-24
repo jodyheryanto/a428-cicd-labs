@@ -8,7 +8,17 @@ pipeline {
     environment {
         CI = 'true'
     }
+    triggers {
+        pollSCM('H/2 * * * *')
+    }
     stages {
+        stage('Clone Repository') {
+            steps {
+                git branch: 'react-app',
+                    credentialsId: 'jenkins-github-token',
+                    url: 'https://github.com/jodyheryanto/a428-cicd-labs.git'
+            }
+        }
         stage('Build') {
             steps {
                 sh 'npm install'
