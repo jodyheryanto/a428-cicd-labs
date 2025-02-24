@@ -7,11 +7,17 @@ pipeline {
     }
     environment {
         CI = 'true'
+        NODE_OPTIONS = '--openssl-legacy-provider'
     }
     triggers {
         pollSCM('H/2 * * * *')
     }
     stages {
+        stage('Setup') {
+            steps {
+                sh 'apt-get update && apt-get install -y git'
+            }
+        }
         stage('Clone Repository') {
             steps {
                 git branch: 'react-app',
@@ -33,6 +39,7 @@ pipeline {
             steps {
                 sh './jenkins/scripts/deliver.sh'
                 input message: 'Finished using the website? (Click "Proceed" to continue)'
+                sh 'chmod +x ./jenkins/scripts/github-pages.sh && ./jenkins/scripts/github-pages.sh'
                 sh './jenkins/scripts/kill.sh'
             }
         }
