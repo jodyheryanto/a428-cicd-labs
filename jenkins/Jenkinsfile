@@ -38,11 +38,16 @@ pipeline {
                 sh './jenkins/scripts/test.sh'
             }
         }
-        stage('Deliver') {
+        stage('Manual Approval') {
+            steps {
+                input message: 'Lanjutkan ke tahap Deploy?', ok: 'Proceed'
+            }
+        }
+        stage('Deploy') {
             steps {
                 sh './jenkins/scripts/deliver.sh'
-                input message: 'Finished using the website? (Click "Proceed" to continue)'
-                sh 'chmod +x ./jenkins/scripts/github-pages.sh && ./jenkins/scripts/github-pages.sh'
+                echo 'Aplikasi berjalan selama 1 menit sebelum dihentikan...'
+                sleep(time: 60, unit: 'SECONDS')
                 sh './jenkins/scripts/kill.sh'
             }
         }
